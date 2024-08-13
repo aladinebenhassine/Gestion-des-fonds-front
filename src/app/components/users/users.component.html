@@ -1,0 +1,58 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 ">
+            <div class="row">
+                <h3 class="mb-0 col">Utilisateurs</h3>
+              <!-- button add fund -->
+              <div class="col text-right">
+                <a (click)="togglePopup()" class="btn btn-sm btn-primary" target="#adduserModal">Ajout d'utilisateur</a>
+              </div>
+            </div>
+          <div class="row">
+            <div class="form-group p-0 m-0">
+              <input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Recherche par email">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="users.length==0">Pas d'utilisateurs existes </div>
+        <div *ngIf="users.length>0" class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="small-col"  (click)="sort('fullname')">Nom et Prénom<span class="sort-indicator">{{ getSortIndicator('fullname') }}</span></th>
+              <th scope="small-col"  (click)="sort('email')">Email<span class="sort-indicator">{{ getSortIndicator('email') }}</span></th>
+              <th scope="small-col"  (click)="sort('password')">Password<span class="sort-indicator">{{ getSortIndicator('password') }}</span></th>
+              <th scope="small-col"  (click)="sort('role')">Role<span class="sort-indicator">{{ getSortIndicator('role') }}</span></th>
+              <th class="small-col" >Modifier</th>
+              <th class="small-col" >Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users | filter: filterName :'users'">
+              <td>{{ user.fullname }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.password }}</td>
+              <td>{{ user.role }}</td>
+              <td> <a (click)=" update(user)" target="#updateuserModal"> <i class="fa-solid fa-pen" > </i> </a></td>
+              <td> <a (click)="delete(user.email);"><i class="fa-solid fa-eraser"></i></a> </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<PopupAjoutUserComponent  *ngIf="ajout" (close)="togglePopup()"> </PopupAjoutUserComponent>
+<popupupdate-User *ngIf="modifier" (close)="modifier=false;getUsers()" [userToUpdate]="userToUpdate"></popupupdate-User>

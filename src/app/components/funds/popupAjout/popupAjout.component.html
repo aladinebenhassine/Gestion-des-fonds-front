@@ -1,0 +1,223 @@
+<div class="modal" data-bs-toggle="modal" data-bs-target="#addFundModal">
+  <div class="modal" id="addFundModal" tabindex="-1" aria-labelledby="addFundModalLabel" aria-hidden="true">
+    <div class="modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addFundModalLabel">Ajouter un nouveau fonds</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="fundForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="page === false">
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="nomFonds" class="form-label">Dénomination du fonds</label>
+                    <input formControlName="nomFonds" type="text" class="form-control" id="nomFonds"
+                           [ngClass]="{ 'invalid-input': fundForm.get('nomFonds').invalid && fundForm.get('nomFonds').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectedAmount" class="form-label">Montant projeté</label>
+                    <input formControlName="montantProjete" type="number" class="form-control" id="projectedAmount"
+                           [ngClass]="{ 'invalid-input': fundForm.get('montantProjete').invalid && fundForm.get('montantProjete').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="fundDuration" class="form-label">Durée du fonds</label>
+                    <input formControlName="dureeFonds" type="number" class="form-control" id="fundDuration"
+                           [ngClass]="{ 'invalid-input': fundForm.get('dureeFonds').invalid && fundForm.get('dureeFonds').touched }">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="creationDate" class="form-label">Date de création</label>
+                    <input formControlName="dateCreation" type="date" class="form-control" id="creationDate"
+                           [ngClass]="{ 'invalid-input': fundForm.get('dateCreation').invalid && fundForm.get('dateCreation').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="subscriptionPeriods" class="form-label">Périodes de souscription</label>
+                    <textarea formControlName="periodesSouscription" class="form-control" id="subscriptionPeriods"
+                              [ngClass]="{ 'invalid-input': fundForm.get('periodesSouscription').invalid && fundForm.get('periodesSouscription').touched }"></textarea>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="visaObtainedDate" class="form-label">
+
+                      Date d'obtention du visa</label>
+                    <input formControlName="dateObtentionVisa" type="date" class="form-control" id="visaObtainedDate"
+                           [ngClass]="{ 'invalid-input': fundForm.get('dateObtentionVisa').invalid && fundForm.get('dateObtentionVisa').touched }">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="depositBank" class="form-label">Banque dépositaire</label>
+                    <input formControlName="banqueDepositaire" type="text" class="form-control" id="depositBank"
+                           [ngClass]="{ 'invalid-input': fundForm.get('banqueDepositaire').invalid && fundForm.get('banqueDepositaire').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="depositFee" class="form-label">Frais du dépositaire</label>
+                    <input formControlName="fraisDepositaire" type="number" class="form-control" id="depositFee"
+                           [ngClass]="{ 'invalid-input': fundForm.get('fraisDepositaire').invalid && fundForm.get('fraisDepositaire').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="managementFee" class="form-label">Frais de gestion</label>
+                    <input formControlName="fraisGestion" type="number" class="form-control" id="managementFee"
+                           [ngClass]="{ 'invalid-input': fundForm.get('fraisGestion').invalid && fundForm.get('fraisGestion').touched }">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="fundNature" class="form-label">Nature du fonds</label>
+                    <select formControlName="natureFonds" class="form-control" id="fundNature"
+                            [ngClass]="{ 'invalid-input': fundForm.get('natureFonds').invalid && fundForm.get('natureFonds').touched }">
+                      <option value="Defiscalisee" >Défiscalisée</option>
+                      <option value="Libre" [selected]="true">Libre</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+              </div>
+              <div class="row" *ngIf="fundForm.get('natureFonds')?.value == 'Defiscalisee'">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="sectors" class="form-label">Secteurs concernés</label>
+                    <select formControlName="secteurs" class="form-control" id="sectors"
+                            [ngClass]="{ 'invalid-input': fundForm.get('secteurs').invalid && fundForm.get('secteurs').touched }">
+                      <option value="Zone de développement régional">Zone de développement régional</option>
+                      <option value="Projets innovants">Projets innovants</option>
+                      <option value="Projets en restructuration">Projets en restructuration</option>
+                      <option value="Agricole">
+
+                        Agricole</option>
+                      <option value="Fonds d'amorçage">Fonds d'amorçage</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="regulatoryRatios" class="form-label">Ratios réglementaires</label>
+                    <input formControlName="ratiosReglementaires" type="number" class="form-control" id="regulatoryRatios"
+                           [ngClass]="{ 'invalid-input': fundForm.get('ratiosReglementaires').invalid && fundForm.get('ratiosReglementaires').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="complianceRatios" class="form-label">Ratios de conformités</label>
+                    <input formControlName="ratiosConformite" type="number" class="form-control" id="complianceRatios"
+                           [ngClass]="{ 'invalid-input': fundForm.get('ratiosConformite').invalid && fundForm.get('ratiosConformite').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="otherRatios" class="form-label">Ratios (Actions, OCA, CCA)</label>
+                    <input formControlName="autresRatios" type="number" class="form-control" id="otherRatios"
+                           [ngClass]="{ 'invalid-input': fundForm.get('autresRatios').invalid && fundForm.get('autresRatios').touched }">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- page 2 -->
+            <div *ngIf="page">
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="subscriber" class="form-label">Souscripteurs</label>
+                    <input formControlName="subscriber" type="text" class="form-control" id="subscriber"
+                           [ngClass]="{ 'invalid-input': fundForm.get('subscriber').invalid && fundForm.get('subscriber').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="subscriptionAmount" class="form-label">Montants des souscriptions</label>
+                    <input formControlName="subscriptionAmount" type="number" class="form-control" id="subscriptionAmount"
+                           [ngClass]="{ 'invalid-input': fundForm.get('subscriptionAmount').invalid && fundForm.get('subscriptionAmount').touched }">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="subscriptionDate" class="form-label">Dates des souscriptions</label>
+                    <input formControlName="subscriptionDate" type="date" class="form-control" id="subscriptionDate"
+                           [ngClass]="{ 'invalid-input': fundForm.get('subscriptionDate').invalid && fundForm.get('subscriptionDate').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="releaseAmount" class="form-label">Montants des libérations</label>
+                    <input formControlName="releaseAmount" type="number" class="form-control" id="releaseAmount"
+                           [ngClass]="{ 'invalid-input': fundForm.get('releaseAmount').invalid && fundForm.get('releaseAmount').touched }">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="releaseDate" class="form-label">Dates des libérations</label>
+                    <input formControlName="releaseDate" type="date" class="form-control" id="releaseDate"
+                           [ngClass]="{ 'invalid-input': fundForm.get('releaseDate').invalid && fundForm.get('releaseDate').touched }">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="regulatoryUseEndDate" class="form-label">Date de fin d'utilisation réglementaire</label>
+                    <input formControlName="regulatoryUseEndDate" type="date" class="form-control" id="regulatoryUseEndDate"
+                           [ngClass]="{ 'invalid-input': fundForm.get('regulatoryUseEndDate').invalid && fundForm.get('regulatoryUseEndDate').touched }">
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="mb-3">
+                 <label class="form-label">Type de souscripteurs</label>
+                 <div formArrayName="subscriberType" *ngFor="let type of subscriberTypes; let i = index">
+                   <input type="checkbox" [formControlName]="i">
+                   <label>{{type}}</label>
+                 </c>
+               </div> -->
+
+             <!-- <div class="mb-3">
+                <label class="form-label">Type de souscripteurs</label>
+                <div formArrayName="subscriberType">
+                  <ng-container *ngFor="let type of fundForm.get('subscriberType').controls; let i = index">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [formControlName]="i">
+                      <label class="form-check-label">{{ subscriberTypes[i] }}</label>
+                    </div>
+                  </ng-container>
+                </div>
+              </div> -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="pagechange()" class="btn btn-secondary">Changer l'étape</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!fundForm.valid">Enregistrer</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

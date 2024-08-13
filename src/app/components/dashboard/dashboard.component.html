@@ -1,0 +1,77 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Fonds</h5>
+                  <span class="h2 font-weight-bold mb-0">{{fundSize}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Utilisateurs</h5>
+                  <span class="h2 font-weight-bold mb-0">{{userSize}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Projets</h5>
+                  <span class="h2 font-weight-bold mb-0">{{projectSize}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-percent"></i>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="row pl-5 col-6">
+    <div style="background-color: white" > <h3 class="card-title text-uppercase text-muted mb-0">Projets  </h3>
+      <qrcode [qrdata]="projetsQR()"  [width]="300"    [margin]="25"></qrcode>
+    </div>
+    <div style="background-color: white"> <h3 class="card-title text-uppercase text-muted mb-0">Fonds  </h3>
+      <qrcode [qrdata]="fondsQR()"  [width]="300"    [margin]="25"></qrcode>
+    </div>
+  </div>
+</div>

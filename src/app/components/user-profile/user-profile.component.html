@@ -1,0 +1,18 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; height:100%;
+ background-size: cover; background-image: url(assets/img.jpg);
+ background-position: right top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+       <div class="row"><h1 class="display-2 text-white">Hello  {{user.fullname}} </h1>
+         <p class="text-white mt-0 mb-5">Ceci est votre page de profil, vous pouvez la modifier en cliquant sur</p>
+         <a (click)="modifier=true" class="btn btn-info">Modifier profile</a>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+<popupupdate-User *ngIf="modifier" (close)="modifier=false" [userToUpdate]="user"></popupupdate-User>

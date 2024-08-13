@@ -1,0 +1,61 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 ">
+            <div class="row">
+                <h3 class="mb-0 col">Projets</h3>
+              <!-- button add fund -->
+              <div class="col text-right">
+                <a *ngIf="role=='Administrateur'||role=='Investisseur'" (click)="togglePopup()" class="btn btn-sm btn-primary" target="#addProjectModal">Ajout Projet</a>
+              </div>
+            </div>
+          <div class="row">
+            <div class="form-group p-0 m-0">
+              <input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Recherche par promoteur">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="projets.length==0">Pas de projects exists </div>
+        <div *ngIf="projets.length>0" class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="small-col" (click)="sort('promoteur')">Promoteur <span class="sort-indicator">{{ getSortIndicator('promoteur') }}</span></th>
+              <th scope="small-col" (click)="sort('dateContact')">Date de contact <span class="sort-indicator">{{ getSortIndicator('dateContact') }}</span></th>
+              <th scope="small-col" (click)="sort('nomPromoteur')">Nom du promoteur <span class="sort-indicator">{{ getSortIndicator('nomPromoteur') }}</span></th>
+              <th scope="small-col" (click)="sort('email')">Email <span class="sort-indicator">{{ getSortIndicator('email') }}</span></th>
+              <th class="small-col">Details</th>
+              <th *ngIf="role=='Administrateur'||role=='Investisseur'"class="small-col">Modifier</th>
+              <th *ngIf="role=='Administrateur'||role=='Investisseur'"class="small-col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let projet of projets | filter: filterName : 'projets'">
+              <td>{{ projet.promoteur }}</td>
+              <td>{{ projet.dateContact }}</td>
+              <td>{{ projet.nomPromoteur }}</td>
+              <td>{{ projet.email }}</td>
+              <td > <a (click)="afficher(projet);"><i class="fa-solid fa-eye"></i></a> </td>
+
+              <td *ngIf="role=='Administrateur'||role=='Investisseur'"> <a (click)=" update(projet)" target="#updateProjectModal"> <i class="fa-solid fa-pen" > </i> </a></td>
+              <td *ngIf="role=='Administrateur'||role=='Investisseur'"> <a (click)="delete(projet.id);getProjects();"><i class="fa-solid fa-eraser"></i></a> </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<PopupAjoutProjetComponent *ngIf="ajout" (close)="togglePopup()"></PopupAjoutProjetComponent>
+<popupupdate-projet *ngIf="modifier" (close)="modifier=false;getProjects()" [projectToUpdate]="projetToUpdate"></popupupdate-projet>

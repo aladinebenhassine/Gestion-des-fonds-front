@@ -1,0 +1,66 @@
+<div class=" bg-gradient-danger ">
+ <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 ">
+            <div class="row">
+                <h3 class="mb-0 col">Fonds</h3>
+                <!-- button add fund -->
+                <div class="col text-right">
+                    <a (click)="togglePopup()" *ngIf="role=='Administrateur'||role=='Gestionnaire de fonds'" class="btn btn-sm btn-primary" target="#addFundModal">Ajout Fond</a>
+                </div>
+
+            </div>
+          <div class="row">
+            <div class="form-group p-0 m-0">
+              <input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Recherche par nom">
+            </div>
+          </div>
+        </div>
+        <div *ngIf="fonds.length==0" style="opacity: 60%"> Pas de fonds exists</div>
+        <div *ngIf="fonds.length>0" class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th class="small-col" (click)="sort('nomFonds')">Nom du Fonds<span class="sort-indicator">{{ getSortIndicator('nomFonds') }}</span></th>
+                <th class="small-col" (click)="sort('montantProjete')">Montant Projeté<span class="sort-indicator">{{ getSortIndicator('montantProjete') }}</span></th>
+                <th class="small-col" (click)="sort('dureeFonds')">Durée du Fonds<span class="sort-indicator">{{ getSortIndicator('dureeFonds') }}</span></th>
+
+                <th  class="small-col">Details</th>
+                <th *ngIf="role=='Administrateur'||role=='Gestionnaire de fonds'"class="small-col">Modifier</th>
+                <th *ngIf="role=='Administrateur'||role=='Gestionnaire de fonds'"class="small-col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fund of fonds | filter: filterName : 'fonds'">
+              <td>{{ fund.id }}</td>
+              <td>{{ fund.nomFonds }}</td>
+              <td>{{ fund.montantProjete }}</td>
+              <td>{{ fund.dureeFonds }}</td>
+             <td> <a (click)="afficher(fund);"><i class="fa-solid fa-eye"></i></a> </td>
+
+              <td *ngIf="role=='Administrateur'||role=='Gestionnaire de fonds'">    <a (click)=" update(fund)" target="#updateFundModal"> <i class="fa-solid fa-pen" > </i> </a></td>
+              <td *ngIf="role=='Administrateur'||role=='Gestionnaire de fonds'"> <a (click)="delete(fund.id);getfonds();"><i class="fa-solid fa-eraser"></i></a> </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<PopupAjoutFundsComponent *ngIf="ajout" (close)="togglePopup()"></PopupAjoutFundsComponent>
+<popupUpdate-fond *ngIf="modifier" (close)="modifier=false;getfonds();" [fundToUpdate]="fundToUpdate"></popupUpdate-fond>
+</div>

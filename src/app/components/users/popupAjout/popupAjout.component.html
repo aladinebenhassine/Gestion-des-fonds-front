@@ -1,0 +1,60 @@
+<div class="modal" data-bs-toggle="modal" id="modal"  data-bs-target="#adduserModal">
+  <div class="modal" id="adduserModal" tabindex="-1" aria-labelledby="adduserModalLabel" aria-hidden="true">
+  <div class=" modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="adduserModalLabel">Ajouter un nouveau user</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend col-12 p-0">
+                <span class="input-group-text col-12 p-0"><label class="col-12" style="text-align: center">Full Name</label></span>
+              </div>
+              <input class="form-control" type="text"  formControlName="fullname">
+              <small *ngIf="registerForm.get('fullname').invalid && registerForm.get('fullname').touched" class="form-text text-danger">Please enter your Full Name</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend col-12 p-0">
+                <span class="input-group-text col-12 p-0"><label class="col-12" style="text-align: center">Email</label></span>
+              </div>
+              <input class="form-control" type="email"  formControlName="email">
+              <small *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched" class="form-text text-danger">Please enter your email</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend col-12 p-0">
+                <span class="input-group-text col-12 p-0"><label class="col-12" style="text-align: center">Password</label></span>
+              </div>
+              <input class="form-control" type="password"  formControlName="password">
+              <small *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched" class="form-text text-danger">Please enter your password</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend col-12 p-0">
+                <span class="input-group-text col-12 p-0"><label class="col-12" style="text-align: center">Roles</label></span>
+              </div>
+              <select class="form-control" formControlName="role">
+                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+              </select>
+              <small *ngIf="registerForm.get('role').invalid && registerForm.get('role').touched" class="form-text text-danger">Please select a role</small>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Fermer</button>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

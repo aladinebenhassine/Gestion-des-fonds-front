@@ -1,0 +1,209 @@
+<div class="modal" data-bs-toggle="modal"   data-bs-target="#updateProjectModal">
+  <div class="modal" id="updateProjectModal" tabindex="-1" aria-labelledby="updateProjectModalLabel" aria-hidden="true">
+    <div class=" modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateProjectModalLabel">Modifier un projet</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="onClose()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="projetForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="promoteur" class="form-label">Promoteur</label>
+                  <input formControlName="promoteur" type="text" class="form-control" id="promoteur"
+                                [ngClass]="{ 'invalid-input': projetForm.get('promoteur').invalid && projetForm.get('promoteur').touched }">
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="dateContact" class="form-label">Date du contact</label>
+                  <input formControlName="dateContact" type="date" class="form-control" id="dateContact"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('dateContact').invalid  }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="nomPromoteur" class="form-label">Nom du promoteur</label>
+                  <input formControlName="nomPromoteur" type="text" class="form-control" id="nomPromoteur"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('nomPromoteur').invalid && projetForm.get('nomPromoteur').touched }">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input formControlName="email" type="email" class="form-control" id="email"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('email').invalid  }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="tel" class="form-label">Téléphone</label>
+                  <input formControlName="tel" type="tel" class="form-control" id="tel"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('tel').invalid}">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="experiencePromoteur" class="form-label">Expérience du promoteur</label>
+                  <input formControlName="experiencePromoteur" type="text" class="form-control" id="experiencePromoteur"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('experiencePromoteur').invalid && projetForm.get('experiencePromoteur').touched }">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="agePromoteur" class="form-label">Âge du promoteur</label>
+                  <input formControlName="agePromoteur" type="number" class="form-control" id="agePromoteur"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('agePromoteur').invalid && projetForm.get('agePromoteur').touched }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="diplome" class="form-label">Diplôme du promoteur</label>
+                  <input formControlName="diplome" type="text" class="form-control" id="diplome"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('diplome').invalid && projetForm.get('diplome').touched }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="observations" class="form-label">Observations</label>
+                  <textarea formControlName="observations" class="form-control" id="observations"
+                                            [ngClass]="{ 'invalid-input': projetForm.get('observations').invalid && projetForm.get('observations').touched }"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="calendrier" class="form-label">Calendrier pour Rendez-vous</label>
+                  <input formControlName="calendrier" type="text" class="form-control" id="calendrier"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('calendrier').invalid && projetForm.get('calendrier').touched }">
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="nomProjet" class="form-label">Nom du projet</label>
+                  <input formControlName="nomProjet" type="text" class="form-control" id="nomProjet"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('nomProjet').invalid && projetForm.get('nomProjet').touched }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="activiteProjet" class="form-label">Activité du projet</label>
+                  <input formControlName="activiteProjet" type="text" class="form-control" id="activiteProjet"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('activiteProjet').invalid && projetForm.get('activiteProjet').touched }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="secteurProjet" class="form-label">Secteur du projet</label>
+                  <input formControlName="secteurProjet" type="text" class="form-control" id="secteurProjet"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('secteurProjet').invalid && projetForm.get('secteurProjet').touched }">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="capitalSocial" class="form-label">Capital social</label>
+                  <input formControlName="capitalSocial" type="text" class="form-control" id="capitalSocial"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('capitalSocial').invalid && projetForm.get('capitalSocial').touched }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="phaseInvestissement" class="form-label">Phase d'investissement</label>
+                  <input formControlName="phaseInvestissement" type="text" class="form-control" id="phaseInvestissement"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('phaseInvestissement').invalid && projetForm.get('phaseInvestissement').touched }">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="adresseSiege" class="form-label">Adresse du siège</label>
+                  <input formControlName="adresseSiege" type="text" class="form-control" id="adresseSiege"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('adresseSiege').invalid && projetForm.get('adresseSiege').touched }">
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="adresseUsine" class="form-label">Adresse de l'usine</label>
+                  <input formControlName="adresseUsine" type="text" class="form-control" id="adresseUsine"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('adresseUsine').invalid && projetForm.get('adresseUsine').touched }">
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="observationsProjet" class="form-label">Observations</label>
+                  <textarea formControlName="observationsProjet" class="form-control" id="observationsProjet"
+                                            [ngClass]="{ 'invalid-input': projetForm.get('observationsProjet').invalid && projetForm.get('observationsProjet').touched }">
+</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="nomContact" class="form-label">Nom du contact</label>
+                  <input formControlName="nomContact" type="text" class="form-control" id="nomContact"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('nomContact').invalid && projetForm.get('nomContact').touched }">
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="emailContact" class="form-label">Email du contact</label>
+                  <input formControlName="emailContact" type="email" class="form-control" id="emailContact"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('emailContact').invalid  }">
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="telContact" class="form-label">Téléphone du contact</label>
+                  <input formControlName="telContact" type="tel" class="form-control" id="telContact"
+                                         [ngClass]="{ 'invalid-input': projetForm.get('telContact').invalid}">
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="activiteContact" class="form-label">Activité du contact</label>
+                  <input formControlName="activiteContact" type="text" class="form-control" id="activiteContact"
+                      [ngClass]="{ 'invalid-input': projetForm.get('activiteContact').invalid && projetForm.get('activiteContact').touched }">
+
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="observationsContact" class="form-label">Observations du contact</label>
+                  <textarea formControlName="observationsContact" class="form-control" id="observationsContact"
+                                            [ngClass]="{ 'invalid-input': projetForm.get('observationsContact').invalid && projetForm.get('observationsContact').touched }">
+</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="!projetForm.valid" >Enregistrer</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Fermer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
